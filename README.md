@@ -28,8 +28,7 @@ docker run -v lhci-data:/data --name helper busybox true
 docker cp lighthouserc.json helper:/data
 docker rm helper
 ```
-and finally run lhci-server:
+and finally run lhci-custom-server:
 ```
-docker volume create lhci-data
 docker container run --publish 9001:9001 -v lhci-data:/data --detach ghcr.io/denidoman/lhci-custom-server:main
 ```
