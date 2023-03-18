@@ -1,0 +1,17 @@
+{
+  "name": "lhci-custom-server",
+  "version": "1.0.0",
+  "author": "Denis Domanskii",
+  "license": "MIT",
+  "dependencies": {
+    "@lhci/cli": "0.11.0",
+    "@lhci/server": "0.11.0",
+    "mysql2": "^2.1.0",
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
+    "sqlite3": "^5.0.0"
+  },
+  "scripts": {
+    "start": "lhci server --config=/data/lighthouserc.json"
+  }
+}
