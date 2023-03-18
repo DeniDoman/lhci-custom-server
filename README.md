@@ -31,5 +31,5 @@ docker rm helper
 and finally run lhci-server:
 ```
 docker volume create lhci-data
-docker container run --publish 9001:9001 -v='lhci-data:/data' --detach denidoman/lhci-custom-server
+docker container run --publish 9001:9001 -v lhci-data:/data --detach ghcr.io/denidoman/lhci-custom-server:main
 ```
