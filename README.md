@@ -3,32 +3,9 @@
 ---
 Unlike the [original Docker image](https://github.com/GoogleChrome/lighthouse-ci/tree/main/docs/recipes/docker-server), here you can use your own configuration.
 
-There is no default configuration here, so create `lighthouserc.json`:
+There is a default configuration, but if you want to override it with yours, then just pass `CONFIG_PATH` environment variable, containing path to your own configuration, into the container:
 ```
-{
-  "ci": {
-    "server": {
-      "port": 9001,
-      "storage": {
-        "storageMethod": "sql",
-        "sqlDialect": "sqlite",
-        "sqlDatabasePath": "/data/lhci.db"
-      }
-    }
-  }
-}
+docker container run -e CONFIG_PATH=/data/lighthouserc.json -p 9001:9001 -v lhci-data:/data -d ghcr.io/denidoman/lhci-custom-server:main
 ```
-also create Docker persistent volume:
-```
-docker volume create lhci-data
-```
-then copy the configuration to the volume (using temp container):
-```
-docker run -v lhci-data:/data --name helper busybox true
-docker cp lighthouserc.json helper:/data
-docker rm helper
-```
-and finally run lhci-custom-server:
-```
-docker container run --publish 9001:9001 -v lhci-data:/data --detach ghcr.io/denidoman/lhci-custom-server:main
-```
+
+In the example above we use configuration file placed in `/data/lighthouserc.json`, so of course you need to create this file inside the `lhci-data` persistent volume first.

@@ -5,6 +5,7 @@ RUN apt-get update --fix-missing && apt-get install -y python build-essential &&
 
 WORKDIR /usr/src/lhci
 COPY package.json .
+COPY lighthouserc.json .
 RUN npm install
 
 EXPOSE 9001
